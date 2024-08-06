@@ -16,51 +16,54 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-image: url(background.jpg);
-    background-size: 100%;
+    background-image: radial-gradient(circle, #cc7f1c, #da5a4b, #c74677, #954c99, #4456a2);
     height: 100vh;
     width: 100vw;
 }
-
 .input{
-    height: 120%;
+    height: 100%;
     width: 130%;
-    padding: 10%;
+    padding: 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 30px;
-    background-color: rgba(0, 0, 0, 0.564);
+    background-color: #4455a26d;
+    border: 2px solid #954c99;
+    box-shadow: 5px 5px 10px;
 }
 .input h1{
     color: white;
     margin-bottom: 20px;
-    text-shadow: 5px 5px 5px orange;
+    text-shadow: 5px 5px 5px #412042;
 }
 .in-text{
     display: flex;
+    flex-direction: column;
 }
 input{
     height: 40px;
     font-size: 25px;
     margin-right: 10px;
     border-radius: 10px;
-    border: 2px solid orange;
+    border: 2px solid rgb(0, 0, 0);
+    margin-bottom: 20px;
 }
 .in-text button{
-    background-color: orange;
+    background-color: #4456a2;
     border: 0;
     border-radius: 30px;
     padding: 15px;
     color: black;
 }
 .in-text button:hover{
-    background-color: rgba(255, 166, 0, 0.637);   
+    background-color: #954c99;   
 }
 .listchid{
     display: flex;
-    width: 410px;
-    margin-left: -40px;
+    flex-wrap: wrap;
+    width: 300px;
+    margin-left: auto;
     align-items: center;
     justify-content: end;  
 }
@@ -69,8 +72,34 @@ input{
     color: aliceblue;
     margin-right: auto;  
 }
+
+
+.child2{
+    display: flex;
+    width:100%;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+.child2 button{
+    margin-left: auto;
+}
+.child3 {
+    font-size: 25px;
+    color: rgb(198, 200, 202);
+      
+}
+.hidden{
+    display: none;
+}
+.manager{
+    background-color: rgba(0, 0, 0, 0.42); 
+    width: max-content;
+    border-radius: 30px;
+    padding: 10%; 
+    margin-top: 3%;
+}
 .btn2{
-    background-color: rgb(86, 56, 0);
+    background-color: #4456a2;
     color: aliceblue;
     border: 0;
     border-radius: 30px;
@@ -78,14 +107,23 @@ input{
     margin: 2%;
 }
 .btn3{
-    background-color: rgb(86, 56, 0);
+    background-color: #da5a4b;
     color: aliceblue;
     border: 0;
     border-radius: 30px;
     padding: 15px;
     margin: 0.1%;
+    
 }
-.finished .btn3{
+.btn4{
+    background-color: #c74677;
+    color: aliceblue;
+    border: 0;
+    border-radius: 30px;
+    padding: 15px;
+    margin: 1%;
+}
+.finished .btn4{
     background-color: rgba(0, 0, 0, 0);
     text-decoration: line-through;
     color: rgba(255, 255, 255, 0.564);
@@ -94,34 +132,41 @@ input{
     text-decoration: line-through;
     text-decoration-thickness: 3px;
     color: rgb(255, 0, 0);
-    
 }
 </style>
-<body style="background-image: url(background.jpg);">
+<body>
     <div class="main">
         <div class="input">
             <h1>Task Manager</h1>
             <div class="in-text">
-                <input type="text" name="text" class="text">
+                <input type="text" name="text" class="text"  placeholder="EnterTask">
+                <input type="time" name="text" class="times" value="14:30">
+                <input type="date" name="text" class="dates" value="2024-08-06" >
                 <button type="submit" class="btn">ADD TASK</button>
             </div>
-            <div class="manager">
+            <div class="manager hidden" >
                 <ul class="list-parent">
                 </ul>
              </div>
         </div> 
     </div>
 <script>
-    // Acces The Element
+// Acces The Element
 let todoInput=document.querySelector(".text");
 console.log(todoInput)
 let todoButton=document.querySelector(".btn");
 console.log(todoButton)
 let todoParent=document.querySelector(".list-parent");
+let todateParent1=document.querySelector(".times");
+let todateParent2=document.querySelector(".dates");
+let box=document.querySelector(".manager");
 // Events 
 todoButton.addEventListener('click',addToDo);
 todoParent.addEventListener('click',Del);
-todoParent.addEventListener('click',Fine);
+todoParent.addEventListener('click',More);
+todoParent.addEventListener('click',Fine1);
+
+
 // Main Function 
 function addToDo(e){
 if(todoInput.value.trim() !== ""){
@@ -141,7 +186,10 @@ if(todoInput.value.trim() !== ""){
     // finsh button
     const Complete=document.createElement("button")
     Complete.classList.add("btn3")
-    Complete.innerHTML="Finish";
+    Complete.innerHTML="More";
+    
+    box.classList.remove('hidden');
+
     // appaned to all in parent ul
     toDiv.appendChild(tolist);
     toDiv.appendChild(trash);
@@ -159,16 +207,44 @@ function Del(e){
         data.remove()
     }
 }
-// finish function
-function Fine(e){
+// More function
+function More(e) {
     const item = e.target;
-    console.log(item.classList)
     if (item.classList[0] === 'btn3') {
-        const data = item.parentElement;
-        data.classList.toggle('finished');
+        const parentDiv = item.parentElement;
+        const oldChild = parentDiv.querySelector('.child2');
+        
+        if (oldChild) {
+            // Remove existing child 
+            oldChild.remove();
+        } else {
+            // Create the new elements
+            const itemDiv = document.createElement("div");
+            itemDiv.classList.add("child2");
+            const fine = document.createElement("button");
+            fine.classList.add("btn4");
+            fine.innerHTML = "Finish";
+            // create new date and time
+            const todate = document.createElement("li");
+            todate.classList.add("child3");
+            todate.innerHTML = todateParent1.value + ' - ' + todateParent2.value;
+
+            itemDiv.appendChild(fine);
+            itemDiv.appendChild(todate);
+            parentDiv.appendChild(itemDiv);
+        }
     }
 }
-
-</script>    
+//Finish function
+function Fine1(e) {
+    const item = e.target;
+    if (item.classList.contains('btn4')) {
+        const data = item.parentElement.parentElement;
+        data.classList.toggle('finished');
+        
+    }
+}
+</script>  
+<script src="js/functions.js"></script>  
 </body>
 </html>

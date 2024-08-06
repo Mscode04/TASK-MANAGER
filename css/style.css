@@ -7,50 +7,54 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-image: url(/images/background.jpg);
-    background-size: 100%;
+    background-image: radial-gradient(circle, #cc7f1c, #da5a4b, #c74677, #954c99, #4456a2);
     height: 100vh;
     width: 100vw;
 }
 .input{
-    height: 120%;
+    height: 100%;
     width: 130%;
-    padding: 10%;
+    padding: 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 30px;
-    background-color: rgba(0, 0, 0, 0.564);
+    background-color: #4455a26d;
+    border: 2px solid #954c99;
+    box-shadow: 5px 5px 10px;
 }
 .input h1{
     color: white;
     margin-bottom: 20px;
-    text-shadow: 5px 5px 5px orange;
+    text-shadow: 5px 5px 5px #412042;
 }
 .in-text{
     display: flex;
+    flex-direction: column;
 }
 input{
     height: 40px;
     font-size: 25px;
     margin-right: 10px;
     border-radius: 10px;
-    border: 2px solid orange;
+    border: 2px solid rgb(0, 0, 0);
+    margin-bottom: 20px;
 }
 .in-text button{
-    background-color: orange;
+    background-color: #4456a2;
     border: 0;
     border-radius: 30px;
     padding: 15px;
     color: black;
 }
 .in-text button:hover{
-    background-color: rgba(255, 166, 0, 0.637);   
+    background-color: #954c99;   
 }
 .listchid{
     display: flex;
-    width: 410px;
-    margin-left: -40px;
+    flex-wrap: wrap;
+    width: 300px;
+    margin-left: auto;
     align-items: center;
     justify-content: end;  
 }
@@ -59,8 +63,34 @@ input{
     color: aliceblue;
     margin-right: auto;  
 }
+
+
+.child2{
+    display: flex;
+    width:100%;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+.child2 button{
+    margin-left: auto;
+}
+.child3 {
+    font-size: 25px;
+    color: rgb(198, 200, 202);
+      
+}
+.hidden{
+    display: none;
+}
+.manager{
+    background-color: rgba(0, 0, 0, 0.42); 
+    width: max-content;
+    border-radius: 30px;
+    padding: 10%; 
+    margin-top: 3%;
+}
 .btn2{
-    background-color: rgb(86, 56, 0);
+    background-color: #4456a2;
     color: aliceblue;
     border: 0;
     border-radius: 30px;
@@ -68,14 +98,23 @@ input{
     margin: 2%;
 }
 .btn3{
-    background-color: rgb(86, 56, 0);
+    background-color: #da5a4b;
     color: aliceblue;
     border: 0;
     border-radius: 30px;
     padding: 15px;
     margin: 0.1%;
+    
 }
-.finished .btn3{
+.btn4{
+    background-color: #c74677;
+    color: aliceblue;
+    border: 0;
+    border-radius: 30px;
+    padding: 15px;
+    margin: 1%;
+}
+.finished .btn4{
     background-color: rgba(0, 0, 0, 0);
     text-decoration: line-through;
     color: rgba(255, 255, 255, 0.564);
@@ -84,5 +123,4 @@ input{
     text-decoration: line-through;
     text-decoration-thickness: 3px;
     color: rgb(255, 0, 0);
-    
 }
