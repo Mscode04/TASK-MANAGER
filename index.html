@@ -71,6 +71,7 @@ input{
     font-size: 30px;
     color: aliceblue;
     margin-right: auto;  
+    border-bottom: 2px solid black;
 }
 
 
@@ -86,6 +87,7 @@ input{
 .child3 {
     font-size: 25px;
     color: rgb(198, 200, 202);
+    
       
 }
 .hidden{
@@ -97,6 +99,7 @@ input{
     border-radius: 30px;
     padding: 10%; 
     margin-top: 3%;
+    
 }
 .btn2{
     background-color: #4456a2;
@@ -227,7 +230,7 @@ function More(e) {
             // create new date and time
             const todate = document.createElement("li");
             todate.classList.add("child3");
-            todate.innerHTML = todateParent1.value + ' - ' + todateParent2.value;
+            todate.innerHTML = todateParent1.value + ' - ' + todateParent2.value +'<hr>' +'<br>';
 
             itemDiv.appendChild(fine);
             itemDiv.appendChild(todate);
